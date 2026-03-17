@@ -1,0 +1,14 @@
+[Unit]
+Description=Claude Code OpenAI-compatible API Proxy
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=%h/claude-proxy-venv/bin/python %h/claude-proxy/server.py --port 4000 --host 0.0.0.0
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
